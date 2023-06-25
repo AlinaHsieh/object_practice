@@ -6,7 +6,10 @@
     / -> 絕對位置
 */
 //$topic=$pdo->query("select * from `topics` where `id`='{$_GET['id']}'")->fetch(PDO::FETCH_ASSOC);
-$topic=find('topics',$_GET['id']);
+$Subject = new Subject;
+$topic=$Subject->find($_GET['id']);
+// dd($topic);
+// dd($Subject->options());
 
 if($topic['login']==1){
     if(!isset($_SESSION['login'])){
@@ -16,9 +19,15 @@ if($topic['login']==1){
           to("index.php?do=login&msg=1");
     }
 }
-
+//下一行：最一開始原生SQL句子撈資料
 //$options=$pdo->query("select * from `options` where `subject_id`='{$_GET['id']}'")->fetchAll(PDO::FETCH_ASSOC);
-$options=all('options',['subject_id'=>$_GET['id']]);
+
+//下一行：用DB Class(需要指定$table)
+// $options=$Option->all(['subject_id'=>$_GET['id']]);
+
+//下一行：用Subject Class(不需要指定$table)
+$options = $Subject->options();
+
 ?>
 
 <h2><?=$topic['subject'];?></h2>

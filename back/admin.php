@@ -14,6 +14,7 @@
           GROUP BY `topics`.`id`;";
 
     $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
     foreach($rows as $row){
 ?>
     <li class="list-row">

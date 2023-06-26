@@ -216,6 +216,8 @@ $User=new DB('members');
 
 class Subject extends DB{
 
+
+
     function __construct(){
         $this->table='topics';
         $this->pdo = new PDO($this->dsn, $this->user, $this->pw);
@@ -253,5 +255,8 @@ class Subject extends DB{
         $sql="select * from `options` where `subject_id`='{$this->result['id']}'";
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function vote(){
+ 
+    }
 }
-?>
